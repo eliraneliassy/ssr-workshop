@@ -7,11 +7,15 @@ import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ItemComponent } from './item/item.component';
+import { SsrRenderDirective } from './ssr-render.directive';
+import { SsrNoRenderDirective } from './ssr-no-render.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemComponent
+    ItemComponent,
+    SsrRenderDirective,
+    SsrNoRenderDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
