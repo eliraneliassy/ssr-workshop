@@ -1,16 +1,40 @@
 import { renderModuleFactory } from '@angular/platform-server';
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-import { writeFileSync } from 'fs';
 
 const { AppServerModuleNgFactory } = require('./dist/ssr-workshop-server/main');
 
+import * as express from 'express';
+import { readFileSync } from 'fs';
+import { enableProdMode } from './node_modules/@angular/core';
 
-renderModuleFactory(AppServerModuleNgFactory, {
-    document: '<app-root></app-root>',
-    url: '/'
-}).then(html => {
-    console.log('renderModuleFactory success!');
-    writeFileSync('./index-server.html', html);
-})
-    .catch(err => console.log(err));
+enableProdMode();
+
+const app = express();
+const indexHtml = readFileSync(__dirname + '/dist/ssr-workshop/index.html', 'utf-8').toString();
+
+
+app.get('*.*', express.static(__dirname + '/dist', {
+   maxAge: '5y'
+}));
+
+app.route('*').get((req, res) => {
+
+   renderModuleFactory(AppServerModuleNgFactory, {
+       document: indexHtml,
+       url: req.url
+   })
+       .then(html => res.status(200).send(html))
+       .catch(err => {
+           console.log(err);
+           res.sendStatus(500);
+       });
+
+
+});
+
+
+app.listen(4500, () => {
+   console.log('express running on port 4500');
+});
+
