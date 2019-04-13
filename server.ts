@@ -14,7 +14,7 @@ const app = express();
 const indexHtml = readFileSync(__dirname + '/dist/ssr-workshop/index.html', 'utf-8').toString();
 
 
-app.get('*.*', express.static(__dirname + '/dist', {
+app.get('*.*', express.static(__dirname + '/dist/ssr-workshop', {
    maxAge: '5y'
 }));
 
@@ -34,7 +34,7 @@ app.route('*').get((req, res) => {
 });
 
 
-app.listen(4500, () => {
-   console.log('express running on port 4500');
+app.listen(4200, () => {
+   console.log('express running on port 4200');
 });
 
