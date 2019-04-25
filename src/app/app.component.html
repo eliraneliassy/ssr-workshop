@@ -6,12 +6,6 @@
   <a class="btn btn-outline-primary" href="#">Sign up</a>
 </div>
 
-<ng-container *appSsrNoRender>
-  <div class="container">
-    <app-item *ngFor="let item of (items$ | async)" [item]="item" class="col-3"></app-item>
-  </div>
-</ng-container>
-
 <ng-container *appSsrRender>
   <div>Loading...</div>
 </ng-container>

@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { ItemComponent } from './item/item.component';
 import { SsrRenderDirective } from './ssr-render.directive';
 import { SsrNoRenderDirective } from './ssr-no-render.directive';
+import { ProductComponent } from './product/product.component';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemComponent,
     SsrRenderDirective,
-    SsrNoRenderDirective
+    SsrNoRenderDirective,
+    ProductComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
