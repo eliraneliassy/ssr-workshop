@@ -107,7 +107,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/ssr-workshop-server",
+            "outputPath": "functions/lib",
             "main": "src/main.server.ts",
             "tsConfig": "src/tsconfig.server.json"
           },
